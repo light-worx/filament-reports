@@ -2,7 +2,9 @@
 
 namespace Lightworx\FilamentReports\Reports;
 
-abstract class BaseReport extends TFPDF
+use tFPDF;
+
+abstract class BaseReport extends tFPDF
 {
     protected string $reportTitle = '';
     protected array $config = [];
@@ -106,9 +108,9 @@ abstract class BaseReport extends TFPDF
 
     abstract public function generate(): void;
 
-    public function output(string $filename = '', string $dest = 'I'): string
+    public function Output($dest='', $name='', $isUTF8=false)
     {
         $this->AliasNbPages();
-        return parent::Output($dest, $filename);
+        return parent::Output($dest, $name, $isUTF8);
     }
 }
