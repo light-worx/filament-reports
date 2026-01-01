@@ -1,0 +1,48 @@
+{
+    "name": "light-worx/filament-reports",
+    "description": "A Filament plugin for creating PDF reports using FPDF",
+    "homepage": "https://github.com/light-worx/filament-reports",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Bishop",
+            "email": "admin@lightworx.co.za",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "filament/filament": "^4.0",
+        "setasign/tfpdf": "^1.3"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13.1",
+        "nunomaduro/collision": "^7.8.1|^8.0",
+        "orchestra/testbench": "^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lightworx\\FilamentReports\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lightworx\\FilamentReports\\FilamentReportsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
