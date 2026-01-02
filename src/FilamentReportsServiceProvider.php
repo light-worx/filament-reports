@@ -4,6 +4,7 @@ namespace Lightworx\FilamentReports;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class FilamentReportsServiceProvider extends ServiceProvider
 {
@@ -105,7 +106,7 @@ class FilamentReportsServiceProvider extends ServiceProvider
         );
 
         // Debug logging (remove after testing)
-        \Log::info('Attempting to register report', [
+        Log::info('Attempting to register report', [
             'file' => $file->getPathname(),
             'computed_namespace' => $namespace,
             'class_exists' => class_exists($namespace),
@@ -113,7 +114,7 @@ class FilamentReportsServiceProvider extends ServiceProvider
         ]);
 
         if (class_exists($namespace) && method_exists($namespace, 'routes')) {
-            \Log::info('Calling routes() for: ' . $namespace);
+            Log::info('Calling routes() for: ' . $namespace);
             $namespace::routes();
         }
     }
