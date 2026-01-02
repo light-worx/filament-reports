@@ -45,36 +45,31 @@ abstract class BaseReport extends tFPDF
             return;
         }
 
-        $this->SetY($this->config['page']['margins']['top'] - 5);
+        $this->SetY($this->config['page']['margins']['top']);
         
         // Logo if configured
         if ($logoPath = $this->config['branding']['logo_path']) {
             if (file_exists($logoPath)) {
-                $this->Image($logoPath, 10, 6, 30);
+                $this->Image($logoPath,12,6,55);
             }
         }
 
-        // Company name
-        $this->SetFont($this->config['default_font']['family'], 'B', 16);
-        $this->Cell(0, 10, $this->config['branding']['company_name'], 0, 0, 'R');
-        $this->Ln(5);
-
         // Report title
         if ($this->reportTitle) {
-            $this->SetFont($this->config['default_font']['family'], 'B', 12);
+            $this->setY(10);
+            $this->SetFont($this->config['default_font']['family'], 'B', 18);
             $this->Cell(0, 10, $this->reportTitle, 0, 0, 'R');
-            $this->Ln(5);
+            $this->Ln(7);
+            $this->SetFont($this->config['default_font']['family'], '', 12);
+            $this->Cell(0, 10, date('j F Y'), 0, 0, 'R');
         }
-
-        // Horizontal line
-        $this->setDrawColor(...$this->config['branding']['secondary_color']);
+        $this->setY(26);
         $this->Line(
             $this->config['page']['margins']['left'],
             $this->GetY(),
             $this->GetPageWidth() - $this->config['page']['margins']['right'],
             $this->GetY()
         );
-        $this->Ln(5);
     }
 
     public function Footer(): void
