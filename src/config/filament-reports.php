@@ -28,6 +28,20 @@ return [
         ],
     ],
 
+    'report_paths' => [
+        // Main app reports
+        [
+            'path' => app_path('Reports'),
+            'namespace' => 'App\\Reports',
+        ],
+        
+        // Module reports
+        [
+            'path' => base_path('Modules/*/app/Reports'),
+            'namespace' => 'Modules\\{module}\\Reports',
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Branding
