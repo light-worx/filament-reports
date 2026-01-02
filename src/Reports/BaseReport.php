@@ -108,6 +108,34 @@ abstract class BaseReport extends tFPDF
 
     abstract public function generate(): void;
 
+    public function handle()
+    {
+        $this->generate();
+        
+        $filename = $this->getFilename();
+        $mode = $this->getOutputMode();
+        
+        return response($this->Output($mode, $filename))
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', $this->getContentDisposition($filename));
+    }
+
+    protected function getFilename(): string
+    {
+        return 'report.pdf';
+    }
+
+    protected function getOutputMode(): string
+    {
+        return request()->has('download') ? 'D' : 'I';
+    }
+
+    protected function getContentDisposition(string $filename): string
+    {
+        $mode = $this->getOutputMode();
+        return $mode === 'D' ? "attachment; filename=\"{$filename}\"" : "inline; filename=\"{$filename}\"";
+    }
+
     public function Output($dest='', $name='', $isUTF8=false)
     {
         $this->AliasNbPages();

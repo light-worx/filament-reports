@@ -17,7 +17,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'page' => [
-        'orientation' => 'P', // P=Portrait, L=Landscape
+        'orientation' => 'L', // P=Portrait, L=Landscape
         'unit' => 'mm',
         'size' => 'A4',
         'margins' => [
