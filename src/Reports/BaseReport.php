@@ -36,6 +36,7 @@ abstract class BaseReport extends tFPDF
     public function setReportTitle(string $title): static
     {
         $this->reportTitle = $title;
+        $this->setTitle($title);
         return $this;
     }
 
