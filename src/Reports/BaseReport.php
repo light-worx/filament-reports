@@ -2,10 +2,14 @@
 
 namespace Lightworx\FilamentReports\Reports;
 
+use Lightworx\FilamentReports\Reports\Concerns\HasBarcodes;
+use Lightworx\FilamentReports\Reports\Concerns\HasShapes;
 use tFPDF;
 
 abstract class BaseReport extends tFPDF
 {
+    use HasShapes, HasBarcodes;
+
     protected string $reportTitle = '';
     protected array $config = [];
 
