@@ -14,8 +14,10 @@ trait HasSections
         $this->Ln(2);
     }
 
-    protected function renderKeyValue(string $key, string $value, int $keyWidth = 50): void
+    protected function renderKeyValue(string $key, ?string $value, int $keyWidth = 50): void
     {
+        $value ??= '—';
+
         $this->SetFont($this->config['default_font']['family'], 'B', $this->config['default_font']['size']);
         $this->Cell($keyWidth, 6, $key . ':', 0, 0, 'L');
         
@@ -31,8 +33,10 @@ trait HasSections
         $this->Ln(3);
     }
 
-    protected function renderText(string $text, bool $bold = false): void
+    protected function renderText(?string $text, bool $bold = false): void
     {
+        $text ??= '';
+
         $style = $bold ? 'B' : '';
         $this->SetFont($this->config['default_font']['family'], $style, $this->config['default_font']['size']);
         $this->MultiCell(0, 5, $text);
